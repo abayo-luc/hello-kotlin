@@ -1,3 +1,5 @@
+import sun.invoke.empty.Empty
+
 // high order function are functions that either return another function or take functions as paramter values
 
 fun printFilteredString(list: List<String>, predicate:((String) -> Boolean)?){
@@ -30,4 +32,7 @@ fun main(){
         .forEach{
         println(it)
     }
+
+    val language = list.filterNotNull().findLast { it.startsWith("Foo") }.orEmpty()
+    println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>$language>>>>>>>>>>>>>>>>>>>>>>>>")
 }
