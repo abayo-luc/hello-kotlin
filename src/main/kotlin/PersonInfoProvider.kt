@@ -10,9 +10,11 @@ interface PersonInfoProvider{
 interface SessionInfoProvider {
     fun getSessionId(): String
 }
-class BasicInfoProvider: PersonInfoProvider, SessionInfoProvider{
+open class BasicInfoProvider: PersonInfoProvider, SessionInfoProvider{
     override val providerInfo: String
         get() = "BasicInfoProvider"
+    // protected will not expose it as an instance property
+    protected open val sessionIdPrefix = "session"
 
     override fun printInfo(person: Person) {
         super.printInfo(person)
@@ -20,7 +22,7 @@ class BasicInfoProvider: PersonInfoProvider, SessionInfoProvider{
     }
 
     override fun getSessionId(): String {
-        return "session-id"
+        return sessionIdPrefix
     }
 }
 
